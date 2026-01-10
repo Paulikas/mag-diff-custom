@@ -12,7 +12,7 @@ import pandas as pd
 def get_diff(model1, model2):
     pass
 
-def prep_path(model_path: str, iter = MODEL_ITER[0]):
+def prep_path_3DGS(model_path: str, iter = MODEL_ITER[0]):
     return os.path.join(model_path, "point_cloud","iteration_" + str(iter),"scene_point_cloud.ply")
 
 def save_np_to_csv(nparray: np.ndarray, filename: str, columns: List = [], path = ""):
@@ -50,10 +50,41 @@ def save_np_to_csv(nparray: np.ndarray, filename: str, columns: List = [], path 
 def get_plydata(path):
     return PlyData.read(path)
 
+def load_ply_blender(path):
+    plydata = get_plydata(path)
 
-def load_ply(path):
+    # if there is no nx, ny, nz then the array is not fill with those columns
+    columns = plydata.elements[0].properties
+
+    check = False
+    for i in columns:
+        if i.name == "nx":
+            check = True
+
+    if check:  
+        data = np.stack((np.asarray(plydata.elements[0]['x']),
+                        np.asarray(plydata.elements[0]['y']),
+                        np.asarray(plydata.elements[0]['z']),
+                        np.asarray(plydata.elements[0]['nx']),
+                        np.asarray(plydata.elements[0]['ny']),
+                        np.asarray(plydata.elements[0]['nz']),
+                        np.asarray(plydata.elements[0]['s']),
+                        np.asarray(plydata.elements[0]['t'])
+                        ), axis=1)
+        
+    else:
+        data = np.stack((np.asarray(plydata.elements[0]['x']),
+                        np.asarray(plydata.elements[0]['y']),
+                        np.asarray(plydata.elements[0]['z']),
+                        np.asarray(plydata.elements[0]['s']),
+                        np.asarray(plydata.elements[0]['t'])
+                        ), axis=1)
+
+    return data
+
+def load_ply_3DGS(path):
     '''
-    Load ply file data to nparray
+    Load ply from 3DGS file data to nparray
     
     :param path: to cloud point data, path must be fortamted by prep_path function
     '''
