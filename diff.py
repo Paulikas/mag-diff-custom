@@ -9,8 +9,7 @@ from plyfile import PlyData
 import numpy as np
 import pandas as pd
 
-def get_diff(model1, model2):
-    pass
+# utilites
 
 def prep_path_3DGS(model_path: str, iter = MODEL_ITER[0]):
     return os.path.join(model_path, "point_cloud","iteration_" + str(iter),"scene_point_cloud.ply")
@@ -155,3 +154,104 @@ def load_ply_3DGS(path):
                     ),  axis=1)
 
     return data
+
+# calculation part. Main function get_diff
+
+def check_position(pos1: List, pos2: List, error_margin:float = 0.0):
+    '''
+    DEPRECATED
+    Check the x, y, z koordinates. Not including nx, ny, nz data.
+    '''
+    # allowed ranges
+    # for x
+    allowed_x_max = pos1[0] + error_margin
+    allowed_x_min = pos1[0] - error_margin
+    check_res_x = False
+
+    # for y
+    allowed_y_max = pos1[1] + error_margin
+    allowed_y_min = pos1[1] - error_margin
+    check_res_y = False
+
+    # for z
+    allowed_z_max = pos1[2] + error_margin
+    allowed_z_min = pos1[2] - error_margin
+    check_res_z = False
+
+    if pos2[0] >= allowed_x_min and pos2[0] <= allowed_x_max:
+        # print(f"x matches at {pos1[0]} and {pos2[0]}")
+        check_res_x = True
+
+    if pos2[1] >= allowed_y_min and pos2[1] <= allowed_y_max:
+        # print(f"y matches at {pos1[1]} and {pos2[1]}")
+        check_res_y = True
+
+    if pos2[2] >= allowed_z_min and pos2[2] <= allowed_z_max:
+        # print(f"z matches at {pos1[2]} and {pos2[2]}")
+        check_res_z = True
+
+    if check_res_x and check_res_y and check_res_z:
+        return True
+    else:
+        return False
+
+def check_data(point1: List, point2: List, type: str = 'blender', error_margin: float = 0.0):
+    '''
+    Returns True if points are identical within error margin
+    Return False if point are not similar
+    '''
+    check_result = False
+
+    for i in range(len(point1)):
+        
+        allowed_max = point1[i] + error_margin
+        allowed_min = point1[i] - error_margin
+
+        if point2[i] >= allowed_min and point2[i] <= allowed_max:
+            check_result = True
+        else:
+            check_result = False
+        
+    return check_result
+
+    
+
+def get_diff(model1: np.ndarray, model2:np.ndarray, type: str = 'blender', error_margin: float = 0.0): # -> np.ndarray:
+    '''    
+    :param type: passible values ['blender', '3DGS']
+    '''
+    difference = []
+    is_match = False
+
+    if len(model1) > len(model2):
+        bendchmar = model2
+        change = model1
+    else:
+        bendchmar = model1
+        change = model2
+
+
+
+    # a loop to move both models throu.
+    # [0] = x, [1] = y, [2]= z
+    for i in change:
+        for j in bendchmar:
+
+            is_match = False
+            
+            if check_position(i, j, error_margin=error_margin):
+                if check_data(i, j, error_margin=error_margin):
+                    is_match = True
+                    break
+                else:
+                    # should here be the code to check if neighbors are not similar.
+                    is_match = False
+                    
+                
+                
+        if is_match == False:
+            difference.append(i)
+        
+                   
+    return difference
+    
