@@ -1,8 +1,8 @@
 
-PATH_TO_MODEL_1 = 'C:\Arsenalas\Studijos\Magistras\SAGA\code\mag-diff-custom\data\8c6602c2-0'
-PATH_TO_MODEL_2 = 'C:\Arsenalas\Studijos\Magistras\SAGA\code\mag-diff-custom\data\\2671c4e5-e'
+PATH_TO_MODEL_1 = 'data/8c6602c2-0'
+PATH_TO_MODEL_2 = 'data/2671c4e5-e'
 
-PATH_TO_BLENDER = 'C:\Arsenalas\Studijos\Magistras\SAGA\code\mag-diff-custom\data\\blender models'
+PATH_TO_BLENDER = 'data/blender models'
 
 BLENDER_MODELS = {
     'cube_with_addon': 'cube_with_addon2.ply',
