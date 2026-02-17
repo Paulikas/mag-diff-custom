@@ -68,7 +68,7 @@ def load_ply_blender(path):
                         np.asarray(plydata.elements[0]['ny']),
                         np.asarray(plydata.elements[0]['nz']),
                         np.asarray(plydata.elements[0]['s']),
-                        np.asarray(plydata.elements[0]['t'])
+                        np.asarray(plydata.elements[0]['t'],)
                         ), axis=1)
         
     else:
@@ -76,7 +76,7 @@ def load_ply_blender(path):
                         np.asarray(plydata.elements[0]['y']),
                         np.asarray(plydata.elements[0]['z']),
                         np.asarray(plydata.elements[0]['s']),
-                        np.asarray(plydata.elements[0]['t'])
+                        np.asarray(plydata.elements[0]['t'],)
                         ), axis=1)
 
     return data
