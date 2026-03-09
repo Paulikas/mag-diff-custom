@@ -1,11 +1,16 @@
 '''
 File for experimentation and figuring out what is what.
 '''
-from utils.ply_files_handler import save_list_to_ply
+
 import os
+
+import open3d as o3d
+
+from utils.ply_files_handler import save_list_to_ply
 from config import ERROR_MARGIN, PATH_TO_MODEL_1, PATH_TO_MODEL_2, MODEL_ITER
 from config import PATH_TO_BLENDER, BLENDER_MODELS
 from diff import get_diff, get_plydata, load_ply_blender, prep_path_3DGS, save_np_to_csv
+from icp import perform_icp, save_icp_transform
 
 # pcd = point cloud data
 # pcd = load_ply_3DGS(prep_path_3DGS(PATH_TO_MODEL_2))
@@ -57,32 +62,39 @@ from diff import get_diff, get_plydata, load_ply_blender, prep_path_3DGS, save_n
 
 # ----------------------------------
 
-import open3d as o3d
-from icp import perform_icp
-import numpy as np
+# Aligning point clouds using ICP
+
+
 
 # 0. prepare paths to models
 path1 = os.path.join(PATH_TO_MODEL_1, "iteration_" + MODEL_ITER[0], 'scene_point_cloud.ply')
 path2 = os.path.join(PATH_TO_MODEL_2, "iteration_" + MODEL_ITER[0], 'scene_point_cloud.ply')
 
-# 1. Load your point clouds from the data/stalas folder
-source = o3d.io.read_point_cloud(path1)
-target = o3d.io.read_point_cloud(path2)
+source = perform_icp(path1, path2)
 
-# 2. (Optional) Define a distance threshold and initial transformation
-threshold = ERROR_MARGIN 
-trans_init = np.identity(4)
+save_path = save_icp_transform(source)
 
-# 3. Perform ICP alignment
-# This function handles normal estimation automatically if needed
-reg_result = perform_icp(source, target, threshold, trans_init)
+# Getting data to right format
+print("Transformed point cloud data")
 
-# 4. Apply the resulting transformation to the source cloud
-source.transform(reg_result.transformation)
+pld = get_plydata(save_path)
 
-# 5. Check the fitness and inlier RMSE
-print(f"Fitness: {reg_result.fitness}")
-print(f"Inlier RMSE: {reg_result.inlier_rmse}")
+print(pld)
+print(len(pld.elements[0].data['x']))
 
-# 6. Save the aligned point cloud
-o3d.io.write_point_cloud("output/stalas/aligned_pointcloud.ply", source)
+print("Original point cloud data")
+
+pld2 = get_plydata(path1)
+
+print(pld2)
+print(len(pld2.elements[0].data['x']))
+
+print("Target point cloud data")
+
+pld3 = get_plydata(path2)
+
+print(pld3)
+print(len(pld3.elements[0].data['x']))
+
+# ----------------------------------
+

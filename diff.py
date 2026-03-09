@@ -9,6 +9,9 @@ from plyfile import PlyData
 import numpy as np
 import pandas as pd
 
+from utils.logger import get_logger
+logger = get_logger(__name__)
+
 # utilites
 
 def prep_path_3DGS(model_path: str, iter = MODEL_ITER[0]):
@@ -155,6 +158,24 @@ def load_ply_3DGS(path):
 
     return data
 
+def load_ply_aligned(path: str):
+    '''
+    Load ply from aligned data.
+
+    param path: to cloud point data, path must be fortamted by prep_path function
+    '''
+    plydata = get_plydata(path)
+
+    data = np.stack((np.asarray(plydata.elements[0]["x"]),
+                    np.asarray(plydata.elements[0]["y"]),
+                    np.asarray(plydata.elements[0]["z"]),
+                    np.asarray(plydata.elements[0]["nx"]),
+                    np.asarray(plydata.elements[0]["ny"]),
+                    np.asarray(plydata.elements[0]["nz"])
+                    ), axis=1)
+
+    return data 
+
 # calculation part. Main function get_diff
 
 def check_position(pos1: List, pos2: List, error_margin:float = 0.0):
@@ -211,6 +232,7 @@ def check_data(point1: List, point2: List, type: str = 'blender', error_margin: 
             check_result = True
         else:
             check_result = False
+            break
         
     return check_result
 
@@ -234,6 +256,8 @@ def get_diff(model1: np.ndarray, model2:np.ndarray, type: str = 'blender', error
 
     # a loop to move both models throu.
     # [0] = x, [1] = y, [2]= z
+    logger.info(f"Starting comparison of {len(change)} points with {len(bendchmar)} points")
+
     for i in change:
         for j in bendchmar:
 
@@ -252,6 +276,6 @@ def get_diff(model1: np.ndarray, model2:np.ndarray, type: str = 'blender', error
         if is_match == False:
             difference.append(i)
         
-                   
+    logger.info(f"Found {len(difference)} points that are not in the other model")           
     return difference
     
