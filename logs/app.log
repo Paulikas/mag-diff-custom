@@ -1,2 +1,8 @@
 2026-03-09 19:10:56,391 - icp - INFO - Fitness: 0.07724042711334257
 2026-03-09 19:10:56,391 - icp - INFO - Inlier RMSE: 0.01272700349810632
+2026-03-11 12:04:07,260 - icp - INFO - [Windows] - Fitness: 0.07724042711334257
+2026-03-11 12:04:07,260 - icp - INFO - [Windows] - Inlier RMSE: 0.01272700349810529
+2026-03-11 12:04:07,568 - icp - INFO - [Windows] - Transformed point cloud data saved to output/stalas/aligned_pointcloud-070_12_04.ply
+2026-03-11 12:15:26,763 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1757098 points
+2026-03-11 12:20:54,700 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-11 12:21:36,337 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points

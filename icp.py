@@ -71,18 +71,22 @@ def save_icp_transform(source) -> str:
     Returns path to saved file.
     '''
     x = datetime.now()
-    time = x.strftime("%j_%H:%M")
+    time = x.strftime("%j_%H_%M")
 
-    save_path = "output/stalas/aligned_pointcloud " + time + ".ply"
+    save_path = "output/stalas/aligned_pointcloud-" + time + ".ply"
     
     # Check if the source is PlyData or Open3D point cloud
     if isinstance(source, o3d.geometry.PointCloud):
+        print("o3d")
+        print(os.path.join(save_path))
         o3d.io.write_point_cloud(os.path.join(save_path), source)
     else:
         # Assuming it's a PlyData object
+        print("plydata")
+        print(os.path.join(save_path))
         source.write(os.path.join(save_path))
 
-    print("Transformed point cloud data saved to " + save_path)
+    # print("Transformed point cloud data saved to " + save_path)
     logger.info("Transformed point cloud data saved to " + save_path)
 
     return save_path

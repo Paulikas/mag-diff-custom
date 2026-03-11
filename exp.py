@@ -6,10 +6,10 @@ import os
 
 import open3d as o3d
 
-from utils.ply_files_handler import save_list_to_ply
-from config import ERROR_MARGIN, PATH_TO_MODEL_1, PATH_TO_MODEL_2, MODEL_ITER
+from utils.ply_files_handler import load_ply_data, save_list_to_ply
+from config import ERROR_MARGIN, PATH_TO_MODEL_1, PATH_TO_MODEL_2, MODEL_ITER, PATH_TO_TRANSFORMED, TRANSFORMED_MODEL
 from config import PATH_TO_BLENDER, BLENDER_MODELS
-from diff import get_diff, get_plydata, load_ply_blender, prep_path_3DGS, save_np_to_csv
+from diff import get_diff, get_plydata, prep_path_3DGS, save_np_to_csv
 from icp import perform_icp, save_icp_transform
 
 # pcd = point cloud data
@@ -41,23 +41,26 @@ from icp import perform_icp, save_icp_transform
 # path1 = os.path.join(PATH_TO_BLENDER, BLENDER_MODELS['cube'])
 # path2 = os.path.join(PATH_TO_BLENDER, BLENDER_MODELS['cube_with_addon'])
 
+# PATH_TO_MODEL_2, nes 1 modelis yra transformuotas
+path1 = os.path.join(PATH_TO_MODEL_2, "iteration_" + MODEL_ITER[0], 'scene_point_cloud.ply')
+path2 = os.path.join(PATH_TO_TRANSFORMED, TRANSFORMED_MODEL)
 
-# pcd1 = load_ply_blender(path1)
-# pcd2 = load_ply_blender(path2)
+pcd1 = load_ply_data(path1, "3DGS")
+pcd2 = load_ply_data(path2, "3DGS")
 
-# diff =  get_diff(pcd1, pcd2)
-# save_list_to_ply(diff, "output\diff\difference1.ply", cloud_type='blender')
+diff =  get_diff(pcd1, pcd2)
+save_path = save_list_to_ply(diff, "output\diff", cloud_type='3DGS')
 
 # diff_after = load_ply_blender("output\diff\difference1.ply")
 
-# ply_diff = get_plydata("output\diff\difference1.ply")
-# ply2 = get_plydata(path2)
+ply_diff = get_plydata(save_path)
+ply2 = get_plydata(path2)
 
-# print(ply2)
-# print(pcd2)
+print(ply2)
+print(pcd2)
 
-# print(ply_diff)
-# print(diff_after)
+print(ply_diff)
+
 
 
 # ----------------------------------
@@ -67,34 +70,37 @@ from icp import perform_icp, save_icp_transform
 
 
 # 0. prepare paths to models
-path1 = os.path.join(PATH_TO_MODEL_1, "iteration_" + MODEL_ITER[0], 'scene_point_cloud.ply')
-path2 = os.path.join(PATH_TO_MODEL_2, "iteration_" + MODEL_ITER[0], 'scene_point_cloud.ply')
+# path1 = os.path.join(PATH_TO_MODEL_1, "iteration_" + MODEL_ITER[0], 'scene_point_cloud.ply')
+# path2 = os.path.join(PATH_TO_MODEL_2, "iteration_" + MODEL_ITER[0], 'scene_point_cloud.ply')
 
-source = perform_icp(path1, path2)
+# print("Reading model 1 form " + path1)
+# print("Reading model 2 form " + path2)
 
-save_path = save_icp_transform(source)
+# source = perform_icp(path1, path2)
 
-# Getting data to right format
-print("Transformed point cloud data")
+# save_path = save_icp_transform(source)
 
-pld = get_plydata(save_path)
+# # Getting data to right format
+# print("Transformed point cloud data")
 
-print(pld)
-print(len(pld.elements[0].data['x']))
+# pld = get_plydata(save_path)
 
-print("Original point cloud data")
+# print(pld)
+# print(len(pld.elements[0].data['x']))
 
-pld2 = get_plydata(path1)
+# print("Original point cloud data")
 
-print(pld2)
-print(len(pld2.elements[0].data['x']))
+# pld2 = get_plydata(path1)
 
-print("Target point cloud data")
+# print(pld2)
+# print(len(pld2.elements[0].data['x']))
 
-pld3 = get_plydata(path2)
+# print("Target point cloud data")
 
-print(pld3)
-print(len(pld3.elements[0].data['x']))
+# pld3 = get_plydata(path2)
+
+# print(pld3)
+# print(len(pld3.elements[0].data['x']))
 
 # ----------------------------------
 
