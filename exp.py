@@ -48,18 +48,22 @@ path2 = os.path.join(PATH_TO_TRANSFORMED, TRANSFORMED_MODEL)
 pcd1 = load_ply_data(path1, "3DGS")
 pcd2 = load_ply_data(path2, "3DGS")
 
-diff =  get_diff(pcd1, pcd2)
-save_path = save_list_to_ply(diff, "output\diff", cloud_type='3DGS')
+for x in range(0, 10, 1):
+    diff =  get_diff(pcd1, pcd2, error_margin=x)
+    save_path = save_list_to_ply(diff, "output\diff", cloud_type='3DGS')
+
+
+
 
 # diff_after = load_ply_blender("output\diff\difference1.ply")
 
-ply_diff = get_plydata(save_path)
-ply2 = get_plydata(path2)
+# ply_diff = get_plydata(save_path)
+# ply2 = get_plydata(path2)
 
-print(ply2)
-print(pcd2)
+# print(ply2)
+# print(pcd2)
 
-print(ply_diff)
+# print(ply_diff)
 
 
 

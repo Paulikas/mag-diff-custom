@@ -6,3 +6,83 @@
 2026-03-11 12:15:26,763 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1757098 points
 2026-03-11 12:20:54,700 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
 2026-03-11 12:21:36,337 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-11 14:03:30,037 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-11 14:06:18,424 - diff - INFO - [Windows] - Found 1757098 points that are not in the other model
+2026-03-11 14:07:19,229 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-11 14:09:59,403 - diff - INFO - [Windows] - Found 1757098 points that are not in the other model
+2026-03-11 14:12:19,866 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-11 14:15:04,550 - diff - INFO - [Windows] - Found 1757098 points that are not in the other model
+2026-03-15 09:58:22,238 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:01:08,304 - diff - INFO - [Windows] - Found 1757098 points that are not in the other model
+2026-03-15 10:09:36,770 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:12:18,538 - diff - INFO - [Windows] - Using value of error margins as: 0
+2026-03-15 10:12:18,637 - diff - INFO - [Windows] - Found 1757098 points that are not in the other model
+2026-03-15 10:12:20,357 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:14:54,643 - diff - INFO - [Windows] - Using value of error margins as: 1
+2026-03-15 10:14:54,697 - diff - INFO - [Windows] - Found 578018 points that are not in the other model
+2026-03-15 10:14:55,193 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:17:23,180 - diff - INFO - [Windows] - Using value of error margins as: 2
+2026-03-15 10:17:23,216 - diff - INFO - [Windows] - Found 339353 points that are not in the other model
+2026-03-15 10:17:23,478 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:20:14,962 - diff - INFO - [Windows] - Using value of error margins as: 3
+2026-03-15 10:20:14,997 - diff - INFO - [Windows] - Found 243723 points that are not in the other model
+2026-03-15 10:20:15,171 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:22:56,607 - diff - INFO - [Windows] - Using value of error margins as: 4
+2026-03-15 10:22:56,636 - diff - INFO - [Windows] - Found 199717 points that are not in the other model
+2026-03-15 10:22:56,817 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:25:39,400 - diff - INFO - [Windows] - Using value of error margins as: 5
+2026-03-15 10:25:39,424 - diff - INFO - [Windows] - Found 170094 points that are not in the other model
+2026-03-15 10:25:39,550 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:28:19,944 - diff - INFO - [Windows] - Using value of error margins as: 6
+2026-03-15 10:28:19,963 - diff - INFO - [Windows] - Found 139278 points that are not in the other model
+2026-03-15 10:28:20,080 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:30:49,281 - diff - INFO - [Windows] - Using value of error margins as: 7
+2026-03-15 10:30:49,303 - diff - INFO - [Windows] - Found 116472 points that are not in the other model
+2026-03-15 10:30:49,374 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:33:24,347 - diff - INFO - [Windows] - Using value of error margins as: 8
+2026-03-15 10:33:24,366 - diff - INFO - [Windows] - Found 97775 points that are not in the other model
+2026-03-15 10:33:24,450 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:36:08,591 - diff - INFO - [Windows] - Using value of error margins as: 9
+2026-03-15 10:36:08,610 - diff - INFO - [Windows] - Found 85161 points that are not in the other model
+2026-03-15 10:45:55,914 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+
+2026-03-15 10:56:48,709 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 10:59:32,684 - diff - INFO - [Windows] - Using value of error margins as: 0
+2026-03-15 10:59:32,785 - diff - INFO - [Windows] - Found 1757098 points that are not in the other model
+2026-03-15 10:59:34,464 - utils.ply_files_handler - INFO - [Windows] - Successfully saved 1757098 points to output\diff\difference-074_10_59.ply
+2026-03-15 10:59:34,508 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 11:02:09,860 - diff - INFO - [Windows] - Using value of error margins as: 1
+2026-03-15 11:02:09,907 - diff - INFO - [Windows] - Found 578018 points that are not in the other model
+2026-03-15 11:02:10,430 - utils.ply_files_handler - INFO - [Windows] - Successfully saved 578018 points to output\diff\difference-074_11_02.ply
+2026-03-15 11:02:10,440 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 11:04:44,180 - diff - INFO - [Windows] - Using value of error margins as: 2
+2026-03-15 11:04:44,218 - diff - INFO - [Windows] - Found 339353 points that are not in the other model
+2026-03-15 11:04:44,492 - utils.ply_files_handler - INFO - [Windows] - Successfully saved 339353 points to output\diff\difference-074_11_04.ply
+2026-03-15 11:04:44,497 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 11:07:18,636 - diff - INFO - [Windows] - Using value of error margins as: 3
+2026-03-15 11:07:18,665 - diff - INFO - [Windows] - Found 243723 points that are not in the other model
+2026-03-15 11:07:18,870 - utils.ply_files_handler - INFO - [Windows] - Successfully saved 243723 points to output\diff\difference-074_11_07.ply
+2026-03-15 11:07:18,873 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 11:09:51,661 - diff - INFO - [Windows] - Using value of error margins as: 4
+2026-03-15 11:09:51,686 - diff - INFO - [Windows] - Found 199717 points that are not in the other model
+2026-03-15 11:09:51,826 - utils.ply_files_handler - INFO - [Windows] - Successfully saved 199717 points to output\diff\difference-074_11_09.ply
+2026-03-15 11:09:51,829 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 11:12:24,938 - diff - INFO - [Windows] - Using value of error margins as: 5
+2026-03-15 11:12:24,960 - diff - INFO - [Windows] - Found 170094 points that are not in the other model
+2026-03-15 11:12:25,087 - utils.ply_files_handler - INFO - [Windows] - Successfully saved 170094 points to output\diff\difference-074_11_12.ply
+2026-03-15 11:12:25,090 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 11:14:58,701 - diff - INFO - [Windows] - Using value of error margins as: 6
+2026-03-15 11:14:58,721 - diff - INFO - [Windows] - Found 139278 points that are not in the other model
+2026-03-15 11:14:58,803 - utils.ply_files_handler - INFO - [Windows] - Successfully saved 139278 points to output\diff\difference-074_11_14.ply
+2026-03-15 11:14:58,805 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 11:17:33,208 - diff - INFO - [Windows] - Using value of error margins as: 7
+2026-03-15 11:17:33,224 - diff - INFO - [Windows] - Found 116472 points that are not in the other model
+2026-03-15 11:17:33,303 - utils.ply_files_handler - INFO - [Windows] - Successfully saved 116472 points to output\diff\difference-074_11_17.ply
+2026-03-15 11:17:33,306 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 11:20:07,381 - diff - INFO - [Windows] - Using value of error margins as: 8
+2026-03-15 11:20:07,396 - diff - INFO - [Windows] - Found 97775 points that are not in the other model
+2026-03-15 11:20:07,461 - utils.ply_files_handler - INFO - [Windows] - Successfully saved 97775 points to output\diff\difference-074_11_20.ply
+2026-03-15 11:20:07,462 - diff - INFO - [Windows] - Starting comparison of 1757098 points with 1526072 points
+2026-03-15 11:22:42,737 - diff - INFO - [Windows] - Using value of error margins as: 9
+2026-03-15 11:22:42,755 - diff - INFO - [Windows] - Found 85161 points that are not in the other model
+2026-03-15 11:22:42,813 - utils.ply_files_handler - INFO - [Windows] - Successfully saved 85161 points to output\diff\difference-074_11_22.ply

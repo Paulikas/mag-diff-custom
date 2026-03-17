@@ -62,7 +62,7 @@ def get_plydata(path):
 
 def check_position(pos1: List, pos2: List, error_margin:float = 0.0):
     '''
-    DEPRECATED
+    DEPRECATED: Now handled natively by scipy.spatial.cKDTree in get_diff
     Check the x, y, z koordinates. Not including nx, ny, nz data.
     '''
     # allowed ranges
@@ -100,6 +100,7 @@ def check_position(pos1: List, pos2: List, error_margin:float = 0.0):
 
 def check_data(point1: List, point2: List, type: str = 'blender', error_margin: float = 0.0):
     '''
+    DEPRECATED: Now handled natively by scipy.spatial.cKDTree in get_diff
     Returns True if points are identical within error margin
     Return False if point are not similar
     '''
@@ -120,48 +121,38 @@ def check_data(point1: List, point2: List, type: str = 'blender', error_margin: 
 
     
 
-def get_diff(model1: np.ndarray, model2:np.ndarray, type: str = 'blender', error_margin: float = 0.0): # -> np.ndarray:
+def get_diff(model1: np.ndarray, model2: np.ndarray, type: str = 'blender', error_margin: float = 0.0): # -> np.ndarray:
     '''    
-    :param type: passible values ['blender', '3DGS']
+    :param type: possible values ['blender', '3DGS']
     '''
-    difference = []
-    is_match = False
-
     if len(model1) > len(model2):
-        bendchmar = model2
+        benchmark = model2
         change = model1
     else:
-        bendchmar = model1
+        benchmark = model1
         change = model2
 
+    logger.info(f"Starting comparison of {len(change)} points with {len(benchmark)} points")
 
+    from scipy.spatial import cKDTree
 
-    # a loop to move both models throu.
-    # [0] = x, [1] = y, [2]= z
-    logger.info(f"Starting comparison of {len(change)} points with {len(bendchmar)} points")
+    # Build a KD-Tree on all spatial attributes of the benchmark array
+    # This allows us to search across xyz, normals, colors, etc. simultaneously
+    tree = cKDTree(benchmark)
 
-    # progress_bar = tqdm(total=len(change))
+    # Query the KDTree for the nearest neighbor of each point in 'change'
+    # We use p=np.inf to apply the same error_margin across all attributes (Chebyshev distance)
+    # The [0] element returned by query() is the distance array (the second is the indices)
+    distances, _ = tree.query(change, p=np.inf)
 
-    for i in tqdm(change):
-        for j in bendchmar:
+    # Filter the points in 'change' whose nearest match in 'benchmark'
+    # is strictly outside of the allowed error_margin.
+    logger.info(f"Using value of error margins as: {error_margin}")
+    is_different = distances > error_margin
+    
+    # We slice out just the points that don't match our criteria
+    difference = change[is_different]
 
-            is_match = False
-            
-            if check_position(i, j, error_margin=error_margin):
-                if check_data(i, j, error_margin=error_margin):
-                    is_match = True
-                    break
-                else:
-                    # should here be the code to check if neighbors are not similar.
-                    is_match = False
-                    
-                
-                
-        if is_match == False:
-            difference.append(i)
-        
-        # progress_bar.update(1)
-        
     logger.info(f"Found {len(difference)} points that are not in the other model")           
     return difference
     

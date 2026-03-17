@@ -3,6 +3,8 @@ import os
 import numpy as np
 from plyfile import PlyData, PlyElement
 
+from utils.logger import get_logger
+logger = get_logger(__name__)
 
 def get_plydata(path):
     return PlyData.read(path)
@@ -47,7 +49,7 @@ def save_list_to_ply(data_list, path, cloud_type='blender'):
     :param cloud_type: Format type ('blender' or '3DGS'). Defaults to 'blender'.
     :type cloud_type: str
     """
-    if not data_list:
+    if len(data_list) == 0:
         print("Empty data list provided. Nothing to save.")
         return
 
@@ -91,13 +93,13 @@ def save_list_to_ply(data_list, path, cloud_type='blender'):
 
     # construct save name
     x = datetime.now()
-    time = x.strftime("%j_%H:%M")
+    time = x.strftime("%j_%H_%M")
 
-    save_path = os.path.join(path, "difference-" + time)
+    save_path = os.path.join(path, "difference-" + time + ".ply")
 
     # Save to file
     ply_data.write(save_path)
-    print(f"Successfully saved {num_points} points to {path}")
+    logger.info(f"Successfully saved {num_points} points to {save_path}")
 
     return save_path
 
